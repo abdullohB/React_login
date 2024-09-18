@@ -41,7 +41,7 @@ function Student() {
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
+                                        <th>Name1</th>
                                         <th>Email</th>
                                         <th>Password</th>
                                     </tr>

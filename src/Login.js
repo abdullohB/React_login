@@ -28,7 +28,7 @@ function Login() {
                 
                 <from action="" onSubmit={handleSubmit}>
                     <div className='mb-3'>
-                        <label htmlFor='email'><strong>Email111</strong></label>
+                        <label htmlFor='email'><strong>Email</strong></label>
                         <input type='email' placeholder='enter Email'  name='email'
                          onChange={handleInput}  className='form-control rounded-0'/>
                          {errors.email && <span className='text-danger'>{errors.email} </span>}
