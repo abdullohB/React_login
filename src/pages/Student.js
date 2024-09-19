@@ -40,7 +40,7 @@ function Student() {
                             <table className="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>ID<1/th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Password</th>
