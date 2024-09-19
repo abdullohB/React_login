@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 function StudentCreate() {
     const [values, setValues] = useState({
         sex: '',
@@ -28,11 +28,14 @@ function StudentCreate() {
         setValues({ ...values, [event.target.name]: event.target.value });
     };
 
-    
+    const navigate = useNavigate();
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.post('http://localhost:3010/insert', values)
-            .then(res => console.log("Registered Successfully!"))
+            // .then(res => console.log("Registered Successfully!"))
+            .then(res => 
+                navigate('/student')
+            )
             .catch(err => console.log(err));
     };
 
