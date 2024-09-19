@@ -28,7 +28,7 @@ db.connect(function(err) {
 
 
 
-
+//********************************* Inser  */
 app.post('/signup', (req, res) => {
     const sql = "INSERT INTO login (name, email ,password) VALUES (?, ?,?)";
     const values = [
@@ -60,8 +60,10 @@ app.post('/insert', (req, res) => {
         return res.json(data);
     });
 });
+//********************************************  insert  */
 
 
+//************************************select  table */
 app.get('/users', (req,res)=>{
     const sql = "SElECT * FROM login";
     db.query(sql, (err,data)=>{
@@ -70,6 +72,19 @@ app.get('/users', (req,res)=>{
     })
   })
 
+  app.get('/detail', (req,res)=>{
+    const sql = "SElECT * FROM detail";
+    db.query(sql, (err,data)=>{
+      if(err) return res.json(err);
+      return res.json(data);
+    })
+  })
+
+
+
+
+
+//************************************select  table */
 // app.listen(8081,() =>{
 //     console.log("listening");
 // })

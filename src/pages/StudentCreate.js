@@ -34,7 +34,7 @@ function StudentCreate() {
         axios.post('http://localhost:3010/insert', values)
             // .then(res => console.log("Registered Successfully!"))
             .then(res => 
-                navigate('/student')
+                navigate('/contact-us')
             )
             .catch(err => console.log(err));
     };
