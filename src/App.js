@@ -6,6 +6,8 @@ import Singup from './Singup';
 import Navbar from "./components/Navbar";
 import Student from './pages/Student';
 import StudentCreate from './pages/StudentCreate';
+import Contact from './pages/Contact';
+import About from './pages/About';
 
 
 
@@ -20,6 +22,8 @@ function App() {
         <Route path='/singup' element={<Singup />}> </Route>
         <Route path='/student' element={<Student/>}> </Route> 
         <Route path='/students/create' element={<StudentCreate/>}> </Route> 
+        <Route path='/about-us' element={<About/>}> </Route> 
+        <Route path='/contact-us' element={<Contact/>}> </Route> 
         
       </Routes>
 
