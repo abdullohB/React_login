@@ -34,7 +34,7 @@ function Contact() {
                 <div className="col-md-12">
                     <div className="card">
                         <div className="card-header">
-                            <h3>Detail
+                            <h3>Detail 11
                                 <Link to="/students/create" className="btn btn-primary float-end">Add student</Link>
                             </h3>
                         </div>
