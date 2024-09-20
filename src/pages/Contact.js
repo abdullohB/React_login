@@ -22,11 +22,11 @@ function Contact() {
             });
     }, []);
 
-    if (loading) {
-        return (
-            <Loading />
-        )
-    }
+    // if (loading) {
+    //     return (
+    //         <Loading />
+    //     )
+    // }
     return (
 
         <div className="container">
