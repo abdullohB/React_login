@@ -56,10 +56,11 @@ function Student() {
                                                 <td>{student.email}</td>
                                                 <td>{student.password}</td>
                                                 <td>
-                                                    <Link to="" className="btn btn-success">Edit</Link>
+                                                    <Link to={`/Update-user/${student.id}`} className="btn btn-success">Edit</Link>
                                                 </td>
                                                 <td>
                                                     <button className="btn btn-danger" >Delete</button>
+                                                    
                                                 </td>
 
                                             </tr>

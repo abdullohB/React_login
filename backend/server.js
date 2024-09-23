@@ -80,14 +80,35 @@ app.get('/users', (req,res)=>{
     })
   })
 
-
-
-
-
 //************************************select  table */
 // app.listen(8081,() =>{
 //     console.log("listening");
 // })
+
+//**************Update  */
+
+
+app.get('/edit/:id' , (req,res)=> {
+    const sql = "SElECT * FROM login Where id = ?";
+    const id = req.params.id;
+    db.query(sql, [id],(err,data) => {
+        if(err) return res.json(err);
+        return res.json(data);
+      })
+})
+ 
+app.put('/update/:id' ,(req,res)=> {
+    const sql = "UPDATE  login SET `name` = ? ,`email` = ?, `password` = ?  Where id = ?";
+    const id = req.params.id;
+    db.query(sql, [req.body.name , req.body.email, req.body.password, id],(err,data)=>{
+        if(err) return res.json("Error");
+        return res.json({update: true})
+
+        
+    })
+})
+
+//**************Update  */
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
