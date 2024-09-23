@@ -1,7 +1,9 @@
+// import bcrypt from 'bcrypt'
+const bcrypt = require('bcrypt');
+const salt = 10;
 
-
-const express= require('express');
-const mysql =require('mysql');
+const express = require('express');
+const mysql = require('mysql');
 const cors = require('cors');
 
 const app = express()
@@ -18,7 +20,7 @@ const db = mysql.createConnection({
     database: 'singup'
 });
 
-db.connect(function(err) {
+db.connect(function (err) {
     if (err) {
         console.log("Error connecting to the database:", err);
     } else {
@@ -28,23 +30,35 @@ db.connect(function(err) {
 
 
 
-//********************************* Inser  */
+//********************************* Inser login  */
 app.post('/signup', (req, res) => {
     const sql = "INSERT INTO login (name, email ,password) VALUES (?, ?,?)";
-    const values = [
-        req.body.name,
-        req.body.email,
-        req.body.password
-    ];
-    db.query(sql, values, (err, data) => {
-        if (err) {
-            console.error("Error inserting data:", err);
-            return res.status(500).json({ error: "Error inserting data" });
+    const password = req.body.password;
+    bcrypt.hash(password.toString() , salt, (err , hash) => {
+        if (err){
+            console.log(err);
         }
-        return res.json(data);
-    });
+        const values = [
+            req.body.name,
+            req.body.email,
+            hash
+        ];
+        db.query(sql, values, (err, data) => {
+            if (err) {
+                console.error("Error inserting data:", err);
+                return res.status(500).json({ error: "Error inserting data" });
+            }
+            return res.json(data);
+        });
+    })
+
 });
 
+
+
+
+
+//********************************* Inser  */
 app.post('/insert', (req, res) => {
     const sql = "INSERT INTO detail (sex, age ,date) VALUES (?, ?,?)";
     const values = [
@@ -64,21 +78,21 @@ app.post('/insert', (req, res) => {
 
 
 //************************************select  table */
-app.get('/users', (req,res)=>{
+app.get('/users', (req, res) => {
     const sql = "SElECT * FROM login";
-    db.query(sql, (err,data)=>{
-      if(err) return res.json(err);
-      return res.json(data);
+    db.query(sql, (err, data) => {
+        if (err) return res.json(err);
+        return res.json(data);
     })
-  })
+})
 
-  app.get('/detail', (req,res)=>{
+app.get('/detail', (req, res) => {
     const sql = "SElECT * FROM detail";
-    db.query(sql, (err,data)=>{
-      if(err) return res.json(err);
-      return res.json(data);
+    db.query(sql, (err, data) => {
+        if (err) return res.json(err);
+        return res.json(data);
     })
-  })
+})
 
 //************************************select  table */
 // app.listen(8081,() =>{
@@ -88,23 +102,23 @@ app.get('/users', (req,res)=>{
 //**************Update  */
 
 
-app.get('/edit/:id' , (req,res)=> {
+app.get('/edit/:id', (req, res) => {
     const sql = "SElECT * FROM login Where id = ?";
     const id = req.params.id;
-    db.query(sql, [id],(err,data) => {
-        if(err) return res.json(err);
+    db.query(sql, [id], (err, data) => {
+        if (err) return res.json(err);
         return res.json(data);
-      })
+    })
 })
- 
-app.put('/update/:id' ,(req,res)=> {
+
+app.put('/update/:id', (req, res) => {
     const sql = "UPDATE  login SET `name` = ? ,`email` = ?, `password` = ?  Where id = ?";
     const id = req.params.id;
-    db.query(sql, [req.body.name , req.body.email, req.body.password, id],(err,data)=>{
-        if(err) return res.json("Error");
-        return res.json({update: true})
+    db.query(sql, [req.body.name, req.body.email, req.body.password, id], (err, data) => {
+        if (err) return res.json("Error");
+        return res.json({ update: true })
 
-        
+
     })
 })
 
